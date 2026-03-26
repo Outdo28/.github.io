@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outdo Restro | Food Served with Experience</title>
+  <meta name="description" content="Outdo Restro – where food is served with experience. Explore photos, menu, bookings, and contact options." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #171a21;
+      --muted: #9aa4b2;
+      --text: #f5f7fb;
+      --accent: #d4a24c;
+      --accent-2: #f4d39a;
+      --line: rgba(255,255,255,0.08);
+      --success: #25D366;
+      --shadow: 0 20px 40px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(212,162,76,0.15), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.06), transparent 20%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(15, 17, 21, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #8d5f11);
+      display: grid;
+      place-items: center;
+      color: #111;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero {
+      padding: 56px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(212,162,76,0.14);
+      color: var(--accent-2);
+      border: 1px solid rgba(212,162,76,0.24);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      font-size: 1.06rem;
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 0 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #b57c20);
+      color: #16120a;
+      box-shadow: var(--shadow);
+    }
+    .btn.secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--line);
+      color: var(--text);
+    }
+    .btn.success { background: var(--success); color: #08160c; }
+    .btn.full { width: 100%; }
+
+    .hero-card,
+    .section-card,
+    .rating-card,
+    .booking-card,
+    .menu-card,
+    .contact-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      overflow: hidden;
+      min-height: 470px;
+      position: relative;
+    }
+
+    .carousel {
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.45s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+      min-height: 470px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.72);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 24px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.72));
+    }
+
+    .slide-tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      background: rgba(255,255,255,0.14);
+      width: fit-content;
+      margin-bottom: 10px;
+      backdrop-filter: blur(6px);
+    }
+
+    .slide-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .slide-copy {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      max-width: 36ch;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      inset: auto 16px 16px auto;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.35);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .icon-btn:hover { background: rgba(255,255,255,0.12); }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .experience-grid,
+    .ratings-grid,
+    .menu-grid,
+    .booking-grid,
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .experience-grid { grid-template-columns: repeat(3, 1fr); }
+    .ratings-grid { grid-template-columns: 1.2fr 0.8fr; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .booking-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+
+    .section-card,
+    .rating-card,
+    .booking-card,
+    .menu-card,
+    .contact-card {
+      padding: 22px;
+    }
+
+    .feature-title,
+    .menu-title,
+    .booking-title,
+    .contact-title {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .rating-big {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stars {
+      letter-spacing: 4px;
+      color: var(--accent-2);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .menu-preview {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      color: var(--muted);
+    }
+
+    .menu-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .booking-actions,
+    .contact-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .action-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      transition: 0.18s ease;
+    }
+
+    .action-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(212,162,76,0.45);
+      background: rgba(212,162,76,0.06);
+    }
+
+    .action-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .action-label { font-weight: 700; }
+    .action-sub { color: var(--muted); font-size: 0.92rem; }
+
+    .footer {
+      padding: 30px 0 54px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .notice {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .experience-grid,
+      .ratings-grid,
+      .menu-grid,
+      .booking-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card { min-height: 380px; }
+      .slide { min-height: 380px; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { flex-direction: column; align-items: start; }
+      .nav-links { justify-content: flex-start; }
+      .hero { padding-top: 32px; }
+      .section-card,
+      .rating-card,
+      .booking-card,
+      .menu-card,
+      .contact-card { padding: 18px; }
+      .btn { width: 100%; }
+      .cta-row { display: grid; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <div class="brand-badge">O</div>
+        <div>
+          <div>Outdo Restro</div>
+          <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Food served with experience</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#gallery">Gallery</a>
+        <a href="#ratings">Ratings</a>
+        <a href="#menu">Menu</a>
+        <a href="#book">Bookings</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">✨ A place where food is served with experience</div>
+          <h1>Good food.<br/>Great vibe.<br/>A memorable experience.</h1>
+          <p>
+            Welcome to Outdo Restro in Hinjawadi, Pune — a spot where dining meets fun. Enjoy delicious food,
+            a highly rated experience, and a distinctive VR + food concept built for friends, families, birthdays,
+            and group outings.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#book">Book a table</a>
+            <a class="btn secondary" href="#menu">View menu</a>
+            <a class="btn secondary" href="https://wa.me/918669040071" target="_blank" rel="noopener">WhatsApp us</a>
+          </div>
+          <div class="notice">
+            Replace the sample local image files in <strong>/assets/</strong> with approved images downloaded from Outdo Restro's Google Business profile,
+            customer reviews, or owner uploads. GitHub Pages works best with local images committed inside the repo.
+          </div>
+        </div>
+
+        <div class="hero-card" id="gallery">
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <article class="slide">
+                <img src="assets/outdo-review-1.jpg" alt="Outdo Restro ambience from guest review" />
+                <div class="slide-overlay">
+                  <span class="slide-tag">Guest moments</span>
+                  <h3 class="slide-title">Real ambience from customer reviews</h3>
+                  <div class="slide-copy">Showcasing genuine guest photos creates trust and lets visitors feel the vibe before they arrive.</div>
+                </div>
+              </article>
+              <article class="slide">
+                <img src="assets/outdo-owner-1.jpg" alt="Outdo Restro owner uploaded food image" />
+                <div class="slide-overlay">
+                  <span class="slide-tag">Signature food</span>
+                  <h3 class="slide-title">Owner-uploaded food highlights</h3>
+                  <div class="slide-copy">Feature your strongest hero dishes from your Google Business profile to make the page instantly appetizing.</div>
+                </div>
+              </article>
+              <article class="slide">
+                <img src="assets/outdo-vr-food.jpg" alt="VR and food experience at Outdo Restro" />
+                <div class="slide-overlay">
+                  <span class="slide-tag">VR + Food</span>
+                  <h3 class="slide-title">A place where food is served with experience</h3>
+                  <div class="slide-copy">Pair your food with immersive entertainment to make every visit feel more than just another meal.</div>
+                </div>
+              </article>
+            </div>
+            <div class="carousel-controls">
+              <button class="icon-btn" type="button" data-prev aria-label="Previous slide">‹</button>
+              <button class="icon-btn" type="button" data-next aria-label="Next slide">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Why people remember Outdo</h2>
+            <p>Use this section to quickly explain the mix of food, mood, and experience that sets the place apart.</p>
+          </div>
+        </div>
+        <div class="experience-grid">
+          <div class="section-card">
+            <h3 class="feature-title">Experience-first dining</h3>
+            <p class="muted">Position Outdo as a place for people who want more than a standard meal — they want an outing with energy, interaction, and memories.</p>
+          </div>
+          <div class="section-card">
+            <h3 class="feature-title">VR + Food</h3>
+            <p class="muted">Highlight the unique VR add-on so the experience feels different from a typical restaurant visit, especially for groups and celebrations.</p>
+          </div>
+          <div class="section-card">
+            <h3 class="feature-title">Birthdays & hangouts</h3>
+            <p class="muted">Make it obvious that Outdo is suitable for birthday plans, office groups, friend meetups, and family gatherings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ratings">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Highly rated on Google</h2>
+            <p>Tap the card or button below to open Outdo Restro's Google listing and see ratings and reviews.</p>
+          </div>
+        </div>
+        <div class="ratings-grid">
+          <a class="rating-card" href="https://www.google.com/search?q=Outdo+Restro+Hinjawadi+Pune" target="_blank" rel="noopener">
+            <div class="rating-big">Highly Rated</div>
+            <div class="stars">★★★★★</div>
+            <p class="muted" style="margin-top: 0;">Open the Google listing to view the latest overall rating, reviews, images, directions, and business details.</p>
+            <div class="pill-row">
+              <span class="pill">Google reviews</span>
+              <span class="pill">Photos</span>
+              <span class="pill">Directions</span>
+              <span class="pill">Business info</span>
+            </div>
+          </a>
+          <div class="rating-card">
+            <h3 class="feature-title">What this block is for</h3>
+            <p class="muted">Since ratings change over time, this page links people directly to Google for the freshest review score instead of hard-coding a number that may become outdated.</p>
+            <a class="btn secondary" style="margin-top: 8px;" href="https://www.google.com/search?q=Outdo+Restro+Hinjawadi+Pune" target="_blank" rel="noopener">See ratings on Google</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Menu</h2>
+            <p>This layout is designed for a static menu taken from your Google Business page. Add menu screenshots or exported images inside your GitHub repo.</p>
+          </div>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card">
+            <h3 class="menu-title">Menu page 1</h3>
+            <div class="menu-preview">
+              <img src="assets/menu-page-1.jpg" alt="Outdo Restro menu page 1" onerror="this.style.display='none'; this.parentElement.innerHTML='Add your first menu screenshot as assets/menu-page-1.jpg';" />
+            </div>
+          </div>
+          <div class="menu-card">
+            <h3 class="menu-title">Menu page 2</h3>
+            <div class="menu-preview">
+              <img src="assets/menu-page-2.jpg" alt="Outdo Restro menu page 2" onerror="this.style.display='none'; this.parentElement.innerHTML='Add your second menu screenshot as assets/menu-page-2.jpg';" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Birthday & group bookings</h2>
+            <p>Choose the booking option that works best for your visit.</p>
+          </div>
+        </div>
+        <div class="booking-grid">
+          <div class="booking-card">
+            <h3 class="booking-title">Reserve or inquire</h3>
+            <p class="muted">Use these quick actions for table bookings, birthday plans, and larger group coordination.</p>
+            <div class="booking-actions">
+              <a class="action-link" href="https://www.zomato.com/pune/outdo-restro-hinjawadi" target="_blank" rel="noopener">
+                <span class="action-main">
+                  <span class="action-label">Option 1: Book via Zomato</span>
+                  <span class="action-sub">Open Outdo Restro on Zomato</span>
+                </span>
+                <span>↗</span>
+              </a>
+              <a class="action-link" href="https://wa.me/918669040071" target="_blank" rel="noopener">
+                <span class="action-main">
+                  <span class="action-label">Option 2: WhatsApp</span>
+                  <span class="action-sub">Chat on +91 866-9040071</span>
+                </span>
+                <span>↗</span>
+              </a>
+              <a class="action-link" href="tel:+918669040071">
+                <span class="action-main">
+                  <span class="action-label">Option 3: Call us now</span>
+                  <span class="action-sub">+91 866-9040071</span>
+                </span>
+                <span>☎</span>
+              </a>
+              <a class="action-link" href="https://www.swiggy.com/restaurants/outdo-restro-hinjawadi-pune-1151083/dineout" target="_blank" rel="noopener">
+                <span class="action-main">
+                  <span class="action-label">Option 4: Book via Swiggy</span>
+                  <span class="action-sub">Open Outdo Restro on Swiggy Dineout</span>
+                </span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="booking-card">
+            <h3 class="booking-title">Great for celebrations</h3>
+            <p class="muted">This section can help you push group plans faster by reducing friction — one tap to book, one tap to call, one tap to WhatsApp.</p>
+            <div class="pill-row">
+              <span class="pill">Birthdays</span>
+              <span class="pill">Office outings</span>
+              <span class="pill">Friends meetup</span>
+              <span class="pill">Family dining</span>
+            </div>
+            <a class="btn primary full" style="margin-top: 18px;" href="https://wa.me/918669040071?text=Hi%20Outdo%20Restro%2C%20I%20want%20to%20book%20for%20a%20birthday%20or%20group%20event." target="_blank" rel="noopener">Plan a group event on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Contact us</h2>
+            <p>Simple and direct contact options for quick action.</p>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3 class="contact-title">Call Outdo Restro</h3>
+            <p class="muted">Need help right away? Tap below to call.</p>
+            <div class="contact-actions">
+              <a class="btn primary" href="tel:+918669040071">Call +91 866-9040071</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3 class="contact-title">WhatsApp Outdo Restro</h3>
+            <p class="muted">For table inquiries, birthdays, or event planning.</p>
+            <div class="contact-actions">
+              <a class="btn success" href="https://wa.me/918669040071" target="_blank" rel="noopener">Open WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© <span id="year"></span> Outdo Restro. Built as a static page for GitHub Pages.</div>
+      <div style="margin-top: 8px;">Tip: keep all images inside your repo under <strong>assets/</strong> so the site remains fast and reliable on GitHub Pages.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const carousel = document.querySelector('[data-carousel]');
+    if (carousel) {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const prev = carousel.querySelector('[data-prev]');
+      const next = carousel.querySelector('[data-next]');
+      let index = 0;
+
+      function render() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      function goNext() {
+        index = (index + 1) % slides.length;
+        render();
+      }
+
+      function goPrev() {
+        index = (index - 1 + slides.length) % slides.length;
+        render();
+      }
+
+      next.addEventListener('click', goNext);
+      prev.addEventListener('click', goPrev);
+
+      let auto = setInterval(goNext, 4500);
+      carousel.addEventListener('mouseenter', () => clearInterval(auto));
+      carousel.addEventListener('mouseleave', () => auto = setInterval(goNext, 4500));
+    }
+  </script>
+</body>
+</html>
