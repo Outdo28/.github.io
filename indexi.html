@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outdo Restro | Food Served with Experience</title>
+  <meta name="description" content="Outdo Restro – where food is served with experience. Explore photos, menu, bookings, and contact options." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --bg-soft: #131821;
+      --card: #171a21;
+      --muted: #9aa4b2;
+      --text: #f5f7fb;
+      --accent: #59A989;
+      --accent-strong: #3f8d70;
+      --accent-soft: rgba(89,169,137,0.14);
+      --line: rgba(255,255,255,0.08);
+      --success: #25D366;
+      --shadow: 0 18px 40px rgba(0,0,0,0.32);
+      --radius: 22px;
+      --max: 1180px;
+      --safe-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(89,169,137,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 20%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 96px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 24px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      backdrop-filter: blur(14px);
+      background: rgba(15, 17, 21, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      min-width: 0;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(89,169,137,0.45);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .brand-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-badge-placeholder {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand > div > div:first-child,
+    h1,
+    .section-head h2,
+    .feature-title,
+    .menu-title,
+    .booking-title,
+    .contact-title,
+    .rating-big,
+    .action-label {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    .nav-links a {
+      flex: 0 0 auto;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(89,169,137,0.18);
+      outline: none;
+    }
+
+    .hero {
+      padding: 18px 0 20px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .hero-copy {
+      max-width: none;
+      order: 2;
+    }
+
+    .hero-card {
+      order: 1;
+      overflow: hidden;
+      min-height: 320px;
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(89,169,137,0.24);
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 9vw, 3.3rem);
+      line-height: 1.02;
+      margin: 0 0 12px;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .hero p {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin: 0 0 18px;
+      max-width: 44ch;
+    }
+
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.96rem;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #08140f;
+      box-shadow: var(--shadow);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .btn.success {
+      background: var(--success);
+      color: #08160c;
+    }
+
+    .btn.full { width: 100%; }
+
+    .carousel {
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.45s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+      min-height: 320px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.74));
+    }
+
+    .slide-tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(89,169,137,0.18);
+      color: var(--text);
+      border: 1px solid rgba(89,169,137,0.28);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .slide-title {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .slide-copy {
+      color: rgba(245,247,251,0.84);
+      font-size: 0.93rem;
+      max-width: 30ch;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 14px;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(9,11,14,0.56);
+      color: white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+
+    .carousel-btn.prev { right: 62px; }
+    .carousel-btn.next { right: 14px; }
+
+    section {
+      padding: 14px 0;
+    }
+
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 6vw, 2.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 62ch;
+      font-size: 0.97rem;
+    }
+
+    .experience-grid,
+    .ratings-grid,
+    .menu-grid,
+    .booking-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .section-card,
+    .rating-card,
+    .booking-card,
+    .menu-card,
+    .contact-card {
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-title,
+    .menu-title,
+    .booking-title,
+    .contact-title {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .rating-big {
+      font-size: clamp(2rem, 11vw, 4rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stars {
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .menu-preview {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      padding: 18px;
+      color: var(--muted);
+      width: 100%;
+    }
+
+    .menu-preview.pdf-preview {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      background:
+        linear-gradient(180deg, rgba(89,169,137,0.12), rgba(255,255,255,0.02)),
+        rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .menu-preview.pdf-preview:hover {
+      transform: translateY(-2px);
+      border-color: rgba(89,169,137,0.45);
+      background:
+        linear-gradient(180deg, rgba(89,169,137,0.18), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.03);
+    }
+
+    .pdf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(89,169,137,0.28);
+      background: rgba(89,169,137,0.12);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pdf-title {
+      margin: 14px 0 8px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .pdf-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      max-width: 34ch;
+    }
+
+    .pdf-open {
+      margin-top: 18px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.93rem;
+    }
+
+    .booking-actions,
+    .contact-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .action-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      transition: 0.18s ease;
+    }
+
+    .action-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(89,169,137,0.45);
+      background: rgba(89,169,137,0.08);
+    }
+
+    .action-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .action-sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      padding: 26px 0 calc(22px + var(--safe-bottom));
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pdf-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(8, 10, 14, 0.94);
+      display: none;
+      flex-direction: column;
+    }
+
+    .pdf-modal.open {
+      display: flex;
+    }
+
+    .pdf-modal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(15,17,21,0.92);
+      backdrop-filter: blur(12px);
+      flex-wrap: wrap;
+    }
+
+    .pdf-modal-title {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .pdf-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .pdf-modal-actions .btn {
+      flex: 1 1 180px;
+    }
+
+    .pdf-frame-wrap {
+      flex: 1;
+      min-height: 0;
+      padding: 10px;
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 18px;
+      background: #111;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .mobile-action-bar {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: calc(10px + env(safe-area-inset-bottom));
+      z-index: 70;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 8px;
+      border-radius: 22px;
+      background: rgba(15, 17, 21, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.36);
+      backdrop-filter: blur(14px);
+    }
+
+    .mobile-action-bar a {
+      min-height: 56px;
+      padding: 8px 6px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mobile-action-bar a.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #08140f;
+    }
+
+    @media (min-width: 700px) {
+      body { padding-bottom: 28px; }
+      .container { width: min(calc(100% - 36px), var(--max)); }
+      .nav {
+        grid-template-columns: auto 1fr;
+        align-items: center;
+      }
+      .nav-links {
+        justify-content: flex-end;
+        overflow: visible;
+      }
+      .hero {
+        padding: 34px 0 28px;
+      }
+      .hero-grid {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+        gap: 24px;
+      }
+      .hero-copy {
+        order: 1;
+        max-width: 360px;
+        align-self: start;
+      }
+      .hero-card {
+        order: 2;
+        min-height: 470px;
+      }
+      .slide { min-height: 470px; }
+      .cta-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .experience-grid { grid-template-columns: repeat(3, 1fr); }
+      .ratings-grid { grid-template-columns: 1.2fr 0.8fr; }
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .booking-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+      .section-card,
+      .rating-card,
+      .booking-card,
+      .menu-card,
+      .contact-card { padding: 22px; }
+      .mobile-action-bar { display: none; }
+      .pdf-modal-actions { width: auto; }
+      .pdf-modal-actions .btn { flex: 0 0 auto; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+        gap: 28px;
+      }
+      .hero-card { min-height: 520px; }
+      .slide { min-height: 520px; }
+      .hero-copy { max-width: 340px; }
+      .container { width: min(calc(100% - 48px), var(--max)); }
+      .cta-row {
+        grid-template-columns: repeat(2, minmax(160px, max-content));
+        justify-content: start;
+      }
+    }
+  
+    .promo-banner {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 100%;
+      max-width: 700px;
+      margin: 10px auto 0;
+      text-align: center;
+      max-width: 600px;
+      margin: 12px auto 0;
+      text-align: center;
+      display:block;
+      width:100%;
+      text-align:center;
+      margin-left:auto;
+      margin-right:auto;
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(89,169,137,0.14);
+      border: 1px solid rgba(89,169,137,0.25);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <div class="brand-badge"><img src="assets/outdo-logo.png" alt="Outdo Restro logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" /><span class="brand-badge-placeholder" style="display:none;">Logo</span></div>
+        <div>
+          <div>Outdo Restro</div>
+          <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Food served with experience</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#gallery">Gallery</a>
+        <a href="#ratings">Ratings</a>
+        <a class="primary" href="#menu">Menu</a>
+        <a href="#book">Bookings</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      
+    <div class="promo-banner">
+      🍽️ Order food & unlock all experiences — including VR, at no extra cost. Food with experience is our motto.
+    </div>
+
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">✨ A place where food is served with experience</div>
+          <h1>Good food.<br/>Great vibe.<br/>A memorable experience.</h1>
+          <p>
+            Welcome to Outdo Restro in Hinjawadi, Pune — a spot where dining meets fun. Enjoy delicious food,
+            a highly rated experience, and a distinctive VR + food concept built for friends, families, birthdays,
+            and group outings.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#book">Book a table</a>
+            <a class="btn secondary" href="#menu">View menu</a>
+            <a class="btn secondary" href="https://wa.me/918669040071" target="_blank" rel="noopener">WhatsApp us</a>
+            <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Outdo+Restro+Hinjawadi+Pune" target="_blank" rel="noopener">Directions</a>
+          </div>
+        </div>
+
+        <div class="hero-card" id="gallery">
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <article class="slide">
+                <img src="assets/outdo-review-1.jpg" alt="Outdo Restro ambience from guest review" />
+                <div class="slide-overlay">
+                  <span class="slide-tag">Guest moments</span>
+                  <h3 class="slide-title">Real ambience from customer reviews</h3>
+                  <div class="slide-copy">Showcasing genuine guest photos creates trust and lets visitors feel the vibe before they arrive.</div>
+                </div>
+              </article>
+              <article class="slide">
+                <img src="assets/outdo-owner-1.jpg" alt="Outdo Restro owner uploaded food image" />
+                <div class="slide-overlay">
+                  <span class="slide-tag">Signature food</span>
+                  <h3 class="slide-title">Owner-uploaded food highlights</h3>
+                  <div class="slide-copy">Feature your strongest hero dishes from your Google Business profile to make the page instantly appetizing.</div>
+                </div>
+              </article>
+              <article class="slide">
+                <img src="assets/outdo-vr-food.jpg" alt="VR and food experience at Outdo Restro" />
+                <div class="slide-overlay">
+                  <span class="slide-tag">VR + Food</span>
+                  <h3 class="slide-title">A place where food is served with experience</h3>
+                  <div class="slide-copy">Pair your food with immersive entertainment to make every visit feel more than just another meal.</div>
+                </div>
+              </article>
+            </div>
+            <div class="carousel-controls">
+              <button class="icon-btn" type="button" data-prev aria-label="Previous slide">‹</button>
+              <button class="icon-btn" type="button" data-next aria-label="Next slide">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Why people remember Outdo</h2>
+            <p>Use this section to quickly explain the mix of food, mood, and experience that sets the place apart.</p>
+          </div>
+        </div>
+        <div class="experience-grid">
+          <div class="section-card">
+            <h3 class="feature-title">Experience-first dining</h3>
+            <p class="muted">Position Outdo as a place for people who want more than a standard meal — they want an outing with energy, interaction, and memories.</p>
+          </div>
+          <div class="section-card">
+            <h3 class="feature-title">VR + Food</h3>
+            <p class="muted">Highlight the unique VR add-on so the experience feels different from a typical restaurant visit, especially for groups and celebrations.</p>
+          </div>
+          <div class="section-card">
+            <h3 class="feature-title">Birthdays & hangouts</h3>
+            <p class="muted">Make it obvious that Outdo is suitable for birthday plans, office groups, friend meetups, and family gatherings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ratings">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Highly rated on Google</h2>
+            <p>Tap the card or button below to open Outdo Restro's Google listing and see ratings and reviews.</p>
+          </div>
+        </div>
+        <div class="ratings-grid">
+          <a class="rating-card" href="https://www.google.com/search?q=Outdo+Restro+Hinjawadi+Pune" target="_blank" rel="noopener">
+            <div class="rating-big">Highly Rated</div>
+            <div class="stars">★★★★★</div>
+            <p class="muted" style="margin-top: 0;">Open the Google listing to view the latest overall rating, reviews, images, directions, and business details.</p>
+            <div class="pill-row">
+              <span class="pill">Google reviews</span>
+              <span class="pill">Photos</span>
+              <span class="pill">Directions</span>
+              <span class="pill">Business info</span>
+            </div>
+          </a>
+          <div class="rating-card">
+            <h3 class="feature-title">What this block is for</h3>
+            <p class="muted">Since ratings change over time, this page links people directly to Google for the freshest review score instead of hard-coding a number that may become outdated.</p>
+            <a class="btn secondary" style="margin-top: 8px;" href="https://www.google.com/search?q=Outdo+Restro+Hinjawadi+Pune" target="_blank" rel="noopener">See ratings on Google</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Menu</h2>
+            <p>Use PDFs instead of JPEGs. Tap any menu card to open it in a full-screen viewer where guests can zoom, scroll, and read it comfortably.</p>
+          </div>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card">
+            <h3 class="menu-title">Menu PDF 1</h3>
+            <button class="menu-preview pdf-preview" type="button" data-pdf="assets/menu-1.pdf" data-title="Outdo Menu 1">
+              <span class="pdf-badge">PDF menu</span>
+              <div>
+                <div class="pdf-title">Open menu PDF 1</div>
+                <p class="pdf-desc">Best for your main food menu. Add the file as <strong>assets/menu-1.pdf</strong>.</p>
+              </div>
+              <span class="pdf-open">Tap to open full screen →</span>
+            </button>
+          </div>
+          <div class="menu-card">
+            <h3 class="menu-title">Menu PDF 2</h3>
+            <button class="menu-preview pdf-preview" type="button" data-pdf="assets/menu-2.pdf" data-title="Outdo Menu 2">
+              <span class="pdf-badge">PDF menu</span>
+              <div>
+                <div class="pdf-title">Open menu PDF 2</div>
+                <p class="pdf-desc">Use this for drinks, specials, or another menu set. Add the file as <strong>assets/menu-2.pdf</strong>.</p>
+              </div>
+              <span class="pdf-open">Tap to open full screen →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Birthday & group bookings</h2>
+            <p>Choose the booking option that works best for your visit.</p>
+          </div>
+        </div>
+        <div class="booking-grid">
+          <div class="booking-card">
+            <h3 class="booking-title">Reserve or inquire</h3>
+            <p class="muted">Use these quick actions for table bookings, birthday plans, and larger group coordination.</p>
+            <div class="booking-actions">
+              <a class="action-link" href="https://www.zomato.com/pune/outdo-restro-hinjawadi" target="_blank" rel="noopener">
+                <span class="action-main">
+                  <span class="action-label">Option 1: Book via Zomato</span>
+                  <span class="action-sub">Open Outdo Restro on Zomato</span>
+                </span>
+                <span>↗</span>
+              </a>
+              <a class="action-link" href="https://wa.me/918669040071" target="_blank" rel="noopener">
+                <span class="action-main">
+                  <span class="action-label">Option 2: WhatsApp</span>
+                  <span class="action-sub">Chat on +91 866-9040071</span>
+                </span>
+                <span>↗</span>
+              </a>
+              <a class="action-link" href="tel:+918669040071">
+                <span class="action-main">
+                  <span class="action-label">Option 3: Call us now</span>
+                  <span class="action-sub">+91 866-9040071</span>
+                </span>
+                <span>☎</span>
+              </a>
+              <a class="action-link" href="https://www.swiggy.com/restaurants/outdo-restro-hinjawadi-pune-1151083/dineout" target="_blank" rel="noopener">
+                <span class="action-main">
+                  <span class="action-label">Option 4: Book via Swiggy</span>
+                  <span class="action-sub">Open Outdo Restro on Swiggy Dineout</span>
+                </span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="booking-card">
+            <h3 class="booking-title">Great for celebrations</h3>
+            <p class="muted">This section can help you push group plans faster by reducing friction — one tap to book, one tap to call, one tap to WhatsApp.</p>
+            <div class="pill-row">
+              <span class="pill">Birthdays</span>
+              <span class="pill">Office outings</span>
+              <span class="pill">Friends meetup</span>
+              <span class="pill">Family dining</span>
+            </div>
+            <a class="btn primary full" style="margin-top: 18px;" href="https://wa.me/918669040071?text=Hi%20Outdo%20Restro%2C%20I%20want%20to%20book%20for%20a%20birthday%20or%20group%20event." target="_blank" rel="noopener">Plan a group event on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Contact us</h2>
+            <p>Simple and direct contact options for quick action.</p>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3 class="contact-title">Call Outdo Restro</h3>
+            <p class="muted">Need help right away? Tap below to call.</p>
+            <div class="contact-actions">
+              <a class="btn primary" href="tel:+918669040071">Call +91 866-9040071</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3 class="contact-title">WhatsApp Outdo Restro</h3>
+            <p class="muted">For table inquiries, birthdays, or event planning.</p>
+            <div class="contact-actions">
+              <a class="btn success" href="https://wa.me/918669040071" target="_blank" rel="noopener">Open WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <div class="mobile-action-bar">
+    <a class="primary" href="#menu">Menu</a>
+    <a href="#book">Book</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Outdo+Restro+Hinjawadi+Pune" target="_blank" rel="noopener">Direction</a>
+    <a href="tel:+918669040071">Call</a>
+  </div>
+
+  <div class="pdf-modal" id="pdfModal" aria-hidden="true">
+    <div class="pdf-modal-bar">
+      <div class="pdf-modal-title" id="pdfModalTitle">Menu PDF</div>
+      <div class="pdf-modal-actions">
+        <a class="btn secondary" id="pdfOpenNewTab" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        <button class="btn primary" type="button" id="pdfCloseBtn">Close</button>
+      </div>
+    </div>
+    <div class="pdf-frame-wrap">
+      <iframe class="pdf-frame" id="pdfFrame" title="Menu PDF viewer"></iframe>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© <span id="year"></span> Outdo Restro. Built as a static page for GitHub Pages.</div>
+      <div style="margin-top: 8px;">Tip: keep your menu PDFs inside your repo under <strong>assets/</strong>, for example <strong>assets/menu-1.pdf</strong> and <strong>assets/menu-2.pdf</strong>.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const carousel = document.querySelector('[data-carousel]');
+    if (carousel) {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const prev = carousel.querySelector('[data-prev]');
+      const next = carousel.querySelector('[data-next]');
+      let index = 0;
+
+      function render() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      function goNext() {
+        index = (index + 1) % slides.length;
+        render();
+      }
+
+      function goPrev() {
+        index = (index - 1 + slides.length) % slides.length;
+        render();
+      }
+
+      next.addEventListener('click', goNext);
+      prev.addEventListener('click', goPrev);
+
+      let auto = setInterval(goNext, 4500);
+      carousel.addEventListener('mouseenter', () => clearInterval(auto));
+      carousel.addEventListener('mouseleave', () => auto = setInterval(goNext, 4500));
+    }
+
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const pdfModalTitle = document.getElementById('pdfModalTitle');
+    const pdfOpenNewTab = document.getElementById('pdfOpenNewTab');
+    const pdfCloseBtn = document.getElementById('pdfCloseBtn');
+    const pdfTriggers = document.querySelectorAll('[data-pdf]');
+
+    function openPdf(pdfUrl, title) {
+      const viewerUrl = `${pdfUrl}#view=FitH`;
+      pdfFrame.src = viewerUrl;
+      pdfOpenNewTab.href = pdfUrl;
+      pdfModalTitle.textContent = title || 'Menu PDF';
+      pdfModal.classList.add('open');
+      pdfModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    }
+
+    function closePdf() {
+      pdfModal.classList.remove('open');
+      pdfModal.setAttribute('aria-hidden', 'true');
+      pdfFrame.src = '';
+      document.body.classList.remove('modal-open');
+    }
+
+    pdfTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        openPdf(trigger.dataset.pdf, trigger.dataset.title);
+      });
+    });
+
+    pdfCloseBtn.addEventListener('click', closePdf);
+
+    pdfModal.addEventListener('click', (event) => {
+      if (event.target === pdfModal) {
+        closePdf();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && pdfModal.classList.contains('open')) {
+        closePdf();
+      }
+    });
+  </script>
+</body>
+</html>
