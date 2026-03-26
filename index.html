@@ -1004,29 +1004,6 @@
     <a href="tel:+918669040071">Call</a>
   </div>
 
-  <div class="pdf-modal" id="pdfModal" aria-hidden="true">
-    <div class="pdf-modal-bar">
-      <div class="pdf-modal-title" id="pdfModalTitle">Menu PDF</div>
-      <div class="pdf-modal-actions">
-        <a class="btn secondary" id="pdfOpenNewTab" href="#" target="_blank" rel="noopener">Open in new tab</a>
-        <button class="btn primary" type="button" id="pdfCloseBtn">Close</button>
-      </div>
-    </div>
-    <div class="pdf-frame-wrap" id="pdfFrameWrap">
-      <!-- <div class="pdf-pages" id="pdfPages">
-        <div class="pdf-loading">Loading menu…</div>
-      </div> -->
-      <iframe class="pdf-frame" id="pdfFrame" title="Menu PDF viewer"></iframe>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container">
-      <div>© <span id="year"></span> Outdo Restro. Built as a static page for GitHub Pages.</div>
-      <div style="margin-top: 8px;">Tip: keep your menu PDFs inside your repo under <strong>assets/</strong>, for example <strong>assets/menu-1.pdf</strong> and <strong>assets/menu-2.pdf</strong>.</div>
-    </div>
-  </footer>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
