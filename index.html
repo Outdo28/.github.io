@@ -416,7 +416,7 @@
       color: var(--muted);
     }
 
-    .menu-preview {
+    /* .menu-preview {
       border-radius: 18px;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -482,7 +482,7 @@
       color: var(--accent);
       font-weight: 700;
       font-size: 0.93rem;
-    }
+    } */
 
     .booking-actions,
     .contact-actions {
@@ -527,7 +527,7 @@
       font-size: 0.92rem;
     }
 
-    .pdf-modal {
+    /* .pdf-modal {
       position: fixed;
       inset: 0;
       z-index: 999;
@@ -582,7 +582,7 @@
       border: 0;
       border-radius: 18px;
       background: #111;
-    }
+    } */
 
     body.modal-open {
       overflow: hidden;
@@ -710,7 +710,7 @@
     }
 
 
-    .pdf-frame-wrap {
+    /* .pdf-frame-wrap {
       flex: 1;
       min-height: 0;
       padding: 10px;
@@ -750,7 +750,28 @@
 
     .pdf-loading {
       color: var(--muted);
+    } */
+
+    .icon-btn {
+      position: absolute;
+      top: 14px;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(9,11,14,0.56);
+      color: white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      font-size: 28px;
+      line-height: 1;
+      padding: 0;
     }
+    .icon-btn[data-prev] { right: 62px; }
+    .icon-btn[data-next] { right: 14px; }
 
 </style>
 </head>
